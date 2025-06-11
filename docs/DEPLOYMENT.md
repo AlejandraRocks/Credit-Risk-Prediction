@@ -76,10 +76,10 @@ http://creditriskalejandra.eastus.azurecontainer.io:8000
 
 - **ACI Container Running**:
 
-  ![azure1](docs/Screenshot_azure1.png)
+  ![azure1](Screenshot_azure1.png)
 
 - **FastAPI Accessible on Azure**:
 
-  ![azure2](docs/Screenshot_azure2.png)
+  ![azure2](Screenshot_azure2.png)
 
 ---
