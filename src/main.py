@@ -3,14 +3,20 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import numpy as np
+import os
 
 app = FastAPI()
 
-# Cargar modelo y scaler
-model = joblib.load("../models/rf_model.joblib")
-scaler = joblib.load("../models/scaler.joblib")
+# Obtener ruta absoluta del modelo y scaler
+current_dir = os.path.dirname(__file__)
+model_path = os.path.join(current_dir, '..', 'models', 'rf_model.joblib')
+scaler_path = os.path.join(current_dir, '..', 'models', 'scaler.joblib')
 
-# Definir los campos que espera la API (24 features)
+# Cargar modelo y scaler
+model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
+
+# Definir los campos de entrada esperados por el modelo
 class CreditInput(BaseModel):
     LIMIT_BAL: float
     SEX: int
@@ -38,8 +44,8 @@ class CreditInput(BaseModel):
 
 @app.post("/predict")
 def predict_credit_default(data: CreditInput):
+    # Convertir entrada a numpy array
     input_data = np.array([[getattr(data, field) for field in data.__fields__]])
     scaled_data = scaler.transform(input_data)
     prediction = model.predict(scaled_data)
     return {"default_prediction": int(prediction[0])}
-
