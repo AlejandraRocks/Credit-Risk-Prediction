@@ -10,15 +10,15 @@ The API was successfully deployed on an EC2 Ubuntu 24.04 instance using Uvicorn 
 
 - ✅ **Instance running**:
 
-  ![server](docs/Screenshot_server_running.png)
+  ![server](Screenshot_server_running.png)
 
 - ✅ **Security Group with ports 22 and 8000 enabled**:
 
-  ![port8000](docs/Screenshot_port8000.png)
+  ![port8000](Screenshot_port8000.png)
 
 - ✅ **FastAPI accessible from browser**:
 
-  ![FastAPI docs](docs/image_deployment.png)
+  ![FastAPI docs](image_deployment.png)
 
 ---
 
