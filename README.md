@@ -127,6 +127,23 @@ The API was successfully deployed on an EC2 Ubuntu 24.04 instance using Uvicorn 
 
 ---
 
+
+## ☁️ Deployment on Azure (ACI + ACR)
+
+This app was containerized with Docker and deployed using:
+
+- Azure Container Registry (ACR)
+- Azure Container Instances (ACI)
+
+📄 Full steps in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
+
+Preview:  
+![FastAPI Redoc](docs/Screenshot_azure1.png)  
+![FastAPI Swagger](docs/Screenshot_azure2.png)
+
+---
+
+
 ## 👩‍💻 Author
 
 Alejandra Vesga-Ramírez  
