@@ -1,13 +1,13 @@
 # Credit Risk Prediction API
 
-This project provides a complete pipeline for training a credit risk prediction model and exposing it via a REST API using FastAPI.
+This project exposes a credit risk prediction model as an API using FastAPI.
 
 ## 🧠 What it does
 
-- Trains a `RandomForestClassifier` to predict credit default based on customer features.
-- Evaluates the model and saves it with `joblib`.
-- Exposes a prediction endpoint `/predict` using FastAPI.
-- Includes preprocessing and evaluation modules for modular reuse.
+- Trains a `RandomForestClassifier` to predict credit default.
+- Saves the model and scaler as `.joblib` files.
+- Exposes a `/predict` endpoint using FastAPI.
+- Includes separate modules for preprocessing, training, and evaluation.
 
 ---
 
@@ -26,23 +26,26 @@ Credit-Risk-Prediction/
 │   ├── train.py
 │   ├── preprocessing.py
 │   └── evaluate.py
-├── venv/
 ├── requirements.txt
+├── docs/
+│   ├── image_deployment.png
+│   ├── Screenshot_port8000.png
+│   ├── Screenshot_server_running.png
 └── README.md
 ```
 
 ---
 
-## ⚙️ Setup instructions
+## ⚙️ Setup instructions (local)
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/tu_usuario/Credit-Risk-Prediction.git
+git clone https://github.com/AlejandraRocks/Credit-Risk-Prediction.git
 cd Credit-Risk-Prediction
 ```
 
-### 2. Create and activate virtual environment
+### 2. Create a virtual environment
 
 ```bash
 python3 -m venv venv
@@ -59,35 +62,30 @@ pip install --break-system-packages -r requirements.txt
 
 ## 🚀 Train the model
 
-Run the pipeline to preprocess data, train the model, and save artifacts:
-
 ```bash
 python3 src/pipeline.py
 ```
 
-This will generate:
+This generates:
 
 - `models/rf_model.joblib`
 - `models/scaler.joblib`
 
 ---
 
-## 🌐 Run the FastAPI server
-
-Start the API with:
+## 🌐 Run the API with FastAPI
 
 ```bash
-uvicorn src.main2:app --reload
+uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Then visit:
+Documentation available at:
 
-- Interactive docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-- JSON schema: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)
+- [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
-## 📥 Example JSON input for `/predict`
+## 📥 JSON example for `/predict`
 
 ```json
 {
@@ -96,28 +94,12 @@ Then visit:
   "EDUCATION": 2,
   "MARRIAGE": 1,
   "AGE": 24,
-  "PAY_0": 2,
-  "PAY_2": 2,
-  "PAY_3": -1,
-  "PAY_4": -1,
-  "PAY_5": -2,
-  "PAY_6": -2,
-  "BILL_AMT1": 3913,
-  "BILL_AMT2": 3102,
-  "BILL_AMT3": 689,
-  "BILL_AMT4": 0,
-  "BILL_AMT5": 0,
-  "BILL_AMT6": 0,
-  "PAY_AMT1": 0,
-  "PAY_AMT2": 689,
-  "PAY_AMT3": 0,
-  "PAY_AMT4": 0,
-  "PAY_AMT5": 0,
+  ...
   "PAY_AMT6": 0
 }
 ```
 
-The response will be:
+Expected response:
 
 ```json
 {
@@ -127,11 +109,21 @@ The response will be:
 
 ---
 
-## 📌 Notes
+## 📷 Deployment on AWS EC2
 
-- The dataset comes from [UCI Credit Card Default dataset](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
-- The model uses `StandardScaler` for preprocessing.
-- Only 24 features are used in the prediction schema.
+The API was successfully deployed on an EC2 Ubuntu 24.04 instance using Uvicorn on port 8000.
+
+- ✅ **Instance running**:
+
+  ![server](docs/Screenshot_server_running.png)
+
+- ✅ **Security Group with ports 22 and 8000 enabled**:
+
+  ![port8000](docs/Screenshot_port8000.png)
+
+- ✅ **FastAPI accessible from browser**:
+
+  ![FastAPI docs](docs/image_deployment.png)
 
 ---
 
