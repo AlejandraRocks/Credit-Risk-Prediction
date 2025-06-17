@@ -3,7 +3,7 @@
 This project provides a production-ready **Credit Risk Prediction API** built with **FastAPI**, designed to assess the probability of default based on credit card client features.
 
 It includes:
-- ✅ A fully trained classification model (Logistic Regression) for credit risk evaluation.
+- ✅ A fully trained classification model (Random Forest Classifier) for credit risk evaluation.
 - 🚀 Two deployment options:
   - **AWS EC2**: Deployed on an Ubuntu instance with Uvicorn.
   - **Azure Container Instances (ACI)**: Using a Docker container hosted in Azure Container Registry (ACR).
